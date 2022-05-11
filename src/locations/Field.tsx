@@ -19,10 +19,9 @@ const Field = () => {
     sdk.ids.field,
     sdk.field.locale
   );
+  const rawValue = jsonValue ? jsonValue.raw : jsonValue || "";
 
-  const { ast, content, config, errors } = useMarkdocCode(
-    jsonValue ? jsonValue.raw : jsonValue || ""
-  );
+  const { ast, content, config, errors } = useMarkdocCode(rawValue);
 
   useEffect(() => {
     sdk.window.startAutoResizer();
@@ -42,7 +41,7 @@ const Field = () => {
     <>
       <CodeMirror
         onBeforeChange={onBeforeChange}
-        value={jsonValue ? jsonValue.raw : jsonValue}
+        value={rawValue}
         options={{
           mode: "markdoc",
           lineNumbers: true,
